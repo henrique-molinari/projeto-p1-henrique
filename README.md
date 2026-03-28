@@ -83,4 +83,4 @@ No terminal, utilize esses dois códigos:
 flutter pub get
 flutter run
 ```
-```
+
