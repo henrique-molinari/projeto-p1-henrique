@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import '../viewmodel/splash_viewmodel.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  final SplashViewmodel viewModel = SplashViewmodel();
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel.navigate(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(16),
-        color: Colors.white,
+        color: Colors.indigo,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -23,7 +37,7 @@ class SplashPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: const Text(
-                    'Teste1',
+                    'A',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
@@ -37,7 +51,7 @@ class SplashPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Teste',
+                      'Auth App',
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
@@ -45,7 +59,7 @@ class SplashPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Teste2',
+                      'Login & Cadastro',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -76,12 +90,12 @@ class SplashPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Teste3',
+                    'Bem-Vindo',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'pindamonhagaba',
+                    'Faça login ou crie sua conta para continuar.',
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.3,
@@ -105,7 +119,7 @@ class SplashPage extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 const Text(
-                  'teste4',
+                  'Autenticação com dados mockados',
                   style: TextStyle(
                     fontSize: 13,
                     color: Colors.black54,
@@ -132,13 +146,13 @@ class SplashPage extends StatelessWidget {
                     child: CircularProgressIndicator(
                       strokeWidth: 2.2,
                       color: Colors.white,
-                      backgroundColor: Colors.orange,
+                      backgroundColor: Colors.deepOrange,
                     ),
                   ),
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'teste6',
+                  'Carregando...',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black54,
