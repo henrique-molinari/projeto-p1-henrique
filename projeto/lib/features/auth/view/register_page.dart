@@ -28,6 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
     final success = await viewModel.register();
     if (!mounted) return;
 
+
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -37,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       await Future.delayed(const Duration(seconds: 1));
       if (mounted) {
-        Navigator.pushReplacementNamed(context, AppRoutes.home);
+        Navigator.pushReplacementNamed(context, AppRoutes.login);
       }
     } else if (viewModel.errorMessage != null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -76,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Text(
                       'Preencha os dados abaixo',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                      style: TextStyle(fontSize: 16, color: Colors.deepPurple),
                     ),
                     SizedBox(height: 32),
                     TextFormField(
@@ -157,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: [
                         Text('Já tem conta?'),
                         TextButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Navigator.pushReplacementNamed(context, AppRoutes.login),
                           child: Text('Fazer login'),
                         ),
                       ],

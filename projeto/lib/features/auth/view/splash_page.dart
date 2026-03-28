@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
             child: const Icon(
               Icons.sentiment_satisfied_alt,
               size: 100,
-              color: Colors.yellow,
+              color: Colors.deepPurple,
             ),
           ),
           const SizedBox(height: 24),

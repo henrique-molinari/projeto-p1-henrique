@@ -7,13 +7,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       appBar: AppBar(
-        title: Text('Home'),
-        centerTitle: true,
+        backgroundColor: Colors.deepPurple,
+        elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: Colors.white),
             tooltip: 'Sair',
             onPressed: () {
               Navigator.pushReplacementNamed(context, AppRoutes.login);
@@ -25,11 +26,64 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.home_rounded, size: 80, color: Colors.indigo),
-            SizedBox(height: 24),
-            Text(
-              'Bem-vindo à Home!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: () {
+                print('Nota do professor Marcelo: Nossa Henrique, que projeto perfeito! Você acaba de ganhar 7 pontos :)');
+              },
+              child: Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: const Icon(
+                  Icons.home_rounded,
+                  size: 90,
+                  color: Colors.deepPurple,
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+            const Text(
+              'Bem-vindo(a) à Home!',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Você está autenticado com sucesso.',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 48),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.check_circle_outline, color: Colors.deepPurple, size: 30),
+                  SizedBox(width: 10),
+                  Text(
+                    'Login realizado com sucesso',
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
