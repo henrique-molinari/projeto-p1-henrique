@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/features/auth/view/home_page.dart';
 import 'package:projeto/features/auth/view/register_page.dart';
 import 'app_routes.dart';
 import 'package:projeto/features/auth/view/splash_page.dart';
@@ -9,5 +10,6 @@ abstract class AppPages {
         AppRoutes.splash: (_) => const SplashPage(),
         AppRoutes.login: (_) => const LoginPage(),
         AppRoutes.register: (_) => const RegisterPage(),
+        AppRoutes.home: (_) => const HomePage(),
   };
 }
