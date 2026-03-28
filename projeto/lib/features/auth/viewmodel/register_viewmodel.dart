@@ -16,6 +16,12 @@ class RegisterViewmodel extends ChangeNotifier {
 
   final UserMockStore _store = UserMockStore();
 
+bool obscureConfirmPassword = true;
+
+void toggleConfirmPasswordVisibility() {
+  obscureConfirmPassword = !obscureConfirmPassword;
+  notifyListeners();
+}
   String? nameValidator(String? value) {
     return Validatorless.multiple([
       Validatorless.required('Nome é obrigatório'),
