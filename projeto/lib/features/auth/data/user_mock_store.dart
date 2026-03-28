@@ -8,7 +8,7 @@ class UserMockStore {
   UserMockStore._internal();
 
   final List<UserModel> _users = [
-    UserModel(nome: 'Admin', email: 'admin@email.com', senha: '123456'),
+    UserModel(nome: 'Henrique', email: 'henriquemolinari@gmail.com', senha: '123456'),
   ];
 
   List<UserModel> get users => _users;
