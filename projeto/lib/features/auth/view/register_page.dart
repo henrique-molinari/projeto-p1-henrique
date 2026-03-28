@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto/features/auth/viewmodel/register_viewmodel.dart';
+import 'package:projeto/app/routes/app_routes.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -29,13 +30,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Cadastro realizado com sucesso!'),
           backgroundColor: Colors.green,
         ),
       );
-      await Future.delayed(Duration(seconds: 1));
-      if (mounted) Navigator.pop(context);
+      await Future.delayed(const Duration(seconds: 1));
+      if (mounted) {
+        Navigator.pushReplacementNamed(context, AppRoutes.home);
+      }
     } else if (viewModel.errorMessage != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
