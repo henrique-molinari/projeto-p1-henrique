@@ -3,16 +3,25 @@ import 'package:validatorless/validatorless.dart';
 import 'package:projeto/features/auth/data/user_mock_store.dart';
 import 'package:projeto/features/auth/model/user_model.dart';
 
-class LoginViewmodel extends ChangeNotifier {
+class RegisterViewmodel extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   bool obscurePassword = true;
   bool isLoading = false;
   String? errorMessage;
 
   final UserMockStore _store = UserMockStore();
+
+  String? nameValidator(String? value) {
+    return Validatorless.multiple([
+      Validatorless.required('Nome é obrigatório'),
+      Validatorless.min(3, 'Nome deve ter pelo menos 3 caracteres'),
+    ])(value);
+  }
 
   String? emailValidator(String? value) {
     return Validatorless.multiple([
@@ -28,39 +37,51 @@ class LoginViewmodel extends ChangeNotifier {
     ])(value);
   }
 
+  String? confirmPasswordValidator(String? value) {
+    return Validatorless.multiple([
+      Validatorless.required('Confirmação é obrigatória'),
+      Validatorless.compare(passwordController, 'As senhas não coincidem'),
+    ])(value);
+  }
+
   void togglePasswordVisibility() {
     obscurePassword = !obscurePassword;
     notifyListeners();
   }
 
-  Future<UserModel?> login() async {
-    if (!formKey.currentState!.validate()) return null;
+  Future<bool> register() async {
+    if (!formKey.currentState!.validate()) return false;
 
     isLoading = true;
     errorMessage = null;
     notifyListeners();
 
-    await Future.delayed(const Duration(milliseconds: 800));
+    await Future.delayed(Duration(milliseconds: 800));
 
-    final user = _store.findByEmailAndPassword(
-      emailController.text.trim(),
-      passwordController.text.trim(),
-    );
-
-    if (user == null) {
-      errorMessage = 'Email ou senha inválidos.';
+    if (_store.emailExists(emailController.text.trim())) {
+      errorMessage = 'Este email já está cadastrado.';
+      isLoading = false;
+      notifyListeners();
+      return false;
     }
+
+    _store.add(UserModel(
+      nome: nameController.text.trim(),
+      email: emailController.text.trim(),
+      senha: passwordController.text.trim(),
+    ));
 
     isLoading = false;
     notifyListeners();
-
-    return user;
+    return true;
   }
 
   @override
   void dispose() {
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 }

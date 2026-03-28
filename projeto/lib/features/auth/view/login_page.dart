@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../app/routes/app_routes.dart';
-import '../viewmodel/login_viewmodel.dart';
+import 'package:projeto/app/routes/app_routes.dart';
+import 'package:projeto/features/auth/viewmodel/login_viewmodel.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
